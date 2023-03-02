@@ -13,6 +13,7 @@ public class Main {
             if(answer.equals("등록")){
                 System.out.println("명언 : 현재를 사랑하라.");
                 System.out.println("작가 : 작자미상");
+                System.out.println("1번 명언이 등록되었습니다.");
             }
 
             if(answer.equals("종료")){
