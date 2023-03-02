@@ -9,6 +9,12 @@ public class Main {
         while(true) {
             System.out.print("명령) ");
             String answer =sc.nextLine();
+
+            if(answer.equals("등록")){
+                System.out.println("명언 : 현재를 사랑하라.");
+                System.out.println("작가 : 작자미상");
+            }
+
             if(answer.equals("종료")){
                 break;
 
