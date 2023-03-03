@@ -16,6 +16,14 @@ public class WiseSayingController {
         lastwiseSayingId = 0;
         wiseSayings = new ArrayList<>();
     }
+    private WiseSaying findById(long id) {
+        for (WiseSaying wiseSaying : wiseSayings) {
+            if (wiseSaying.getId() == id) {
+                return wiseSaying;
+            }
+        }
+        return null;
+    }
 
     public void write() {
         long id = lastwiseSayingId + 1;
@@ -60,12 +68,31 @@ public class WiseSayingController {
         System.out.printf("%d번 명언이 삭제되었습니다.\n",id);
     }
 
-    private WiseSaying findById(long id) {
-        for (WiseSaying wiseSaying : wiseSayings) {
-            if (wiseSaying.getId() == id) {
-                return wiseSaying;
-            }
+
+    public void modify(Rq rq) {
+        long id = rq.getLongParam("id",-1);
+
+        if (id==-1) {
+            System.out.println("id(정수)를 입력해주세요.");
+            return;
         }
-        return null;
+        //입력된 id와 일치하는 명언객체찾기
+        WiseSaying wiseSaying = findById(id);
+
+        if(wiseSaying==null){
+            System.out.printf("%d번 명언은 존재하지 않습니다.\n", id);
+            return;
+        }
+        System.out.printf("명언(기존) : %s\n",wiseSaying.getContent());
+        System.out.print("명언 : ");
+        String content = sc.nextLine();
+        System.out.printf("작가(기존) : %s\n",wiseSaying.getAuthorname());
+        System.out.print("작가 : ");
+        String authorname = sc.nextLine();
+
+        wiseSaying.setAuthorname(authorname);
+        wiseSaying.setContent(content);
+
+        System.out.printf("%d번 명언이 수정되었습니다.\n",id);
     }
 }
